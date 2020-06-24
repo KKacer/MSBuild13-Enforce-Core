@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <!--The benefit of package.csproj is that I don't need the below line in every project-->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <!-- Version, Release notes-->
+  <PropertyGroup>
+    <Version>0.0.0.4</Version>
+
+  </PropertyGroup>
+  <!--ID, Title-->
+  <PropertyGroup>
+    <Title>WeRTheBest.NugLibEnforceCore</Title>
+    <PackageId>WeRTheBest.NugLibEnforceCore</PackageId>
+    <Product>WeRTheBest.NugLibEnforceCore</Product>
+  </PropertyGroup>
+  <!--Self Include-->
+  <ItemGroup>
+    <None Include=".pack\package.csproj" />
+  </ItemGroup>
+  <!-- Removed to have a cleaner files for the question -->
+</Project>

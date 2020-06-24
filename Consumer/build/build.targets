@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!--! NugLib Engine version 1 -->
+  <!-- ===================================================================================== -->
+  <!-- 1. Properties -->
+
+  <PropertyGroup>
+    <LibFolder>$(SolutionDir).libs</LibFolder>
+    <!-- <LibFolderPart2 Condition="'$(MSBuildRuntimeType)' == 'Core'">netstandard2.1\NugLibEnforceCore.dll</LibFolderPart2> -->
+    <LibFolderPart2 Condition="'$(MSBuildRuntimeType)' == 'Core'">NugLibEnforceCore.dll</LibFolderPart2>
+    <LibFolderPart2 Condition="'$(MSBuildRuntimeType)' != 'Core'">net472\NugLibEnforceCore.dll</LibFolderPart2>
+  </PropertyGroup>
+
+  <!-- ===================================================================================== -->
+  <!-- 2. Imports and usings -->
+
+  <UsingTask
+    TaskName="TestTask"
+    AssemblyFile="$(LibFolder)\$(LibFolderPart2)"
+  />
+
+  <!-- ===================================================================================== -->
+  <Target Name="DoTheTask" AfterTargets="Build">
+    <Message Text="=== Trying TestTask ===" Importance="high" />
+    <TestTask />
+    <Message Text=" == TestTask is finished" Importance="high" />
+  </Target>
+
+  <!-- ===================================================================================== -->
+  <!-- 6. TestVars -->
+
+  <Target Name="TestVars" BeforeTargets="DoTheTask">
+
+    <Message Text="Lib Address calculated: $(LibFolder)\$(LibFolderPart2)" Importance="high" />
+    <!-- <Message Text="PackageId: $(PackageId)" Importance="high" /> -->
+
+    <!-- <Message Text="MSBuildProjectName: $(MSBuildProjectName)" Importance="high" /> -->
+    <!-- <Message Text="MSBuildThisFile : $(MSBuildThisFile)" Importance="high" /> -->
+    <!-- <Message Text="MSBuildThisFileDirectory : $(MSBuildThisFileDirectory)" Importance="high" /> -->
+    <!-- <Message Text="MSBuildThisFileDirectoryNoRoot: $(MSBuildThisFileDirectoryNoRoot)" Importance="high" /> -->
+    <!-- <Message Text="MSBuildThisFileName: $(MSBuildThisFileName)" Importance="high" /> -->
+    <!-- <Message Text="OutputPath : $(OutputPath)" Importance="high" /> -->
+    <!-- <Message Text="ProjectName: $(ProjectName)" Importance="high" /> -->
+    <!-- <Message Text="MSBuildProjectDirectory: $(MSBuildProjectDirectory)" Importance="high" /> -->
+    <!-- <Message Text="PackageArchiveRootDir: $(PackageArchiveRootDir)" Importance="high" /> -->
+
+    <!--<Message Text="Vars options: " Importance="high" />
+    <Message Text="Subject 1: '$(Subject)'" Importance="high" />
+    <Message Text="Subject 2: &quot;$(Subject)&quot;" Importance="high" />
+    <Message Text="Subject 3: $(Subject)" Importance="high" />
+    <Message Text="xOutLocation: $(xOutLocation)" Importance="high" />
+    <Message Text="xOutParent: $(xOutParent)" Importance="high" />
+    -->
+    <!-- Bugged: <Message Text="xOutParent2: $(xOutParent2)" Importance="high" /> -->
+    <!--
+    <Message Text="xOutParent3: $(xOutParent3)" Importance="high" />
+    <Message Text="Lib Folder Address calculated: $(LibFolderAddress)" Importance="high" />
+    <Message Text="ZipFile1: $(ZipFile1)" Importance="high" />
+    <Message Text="ZipFile2: $(ZipFile2)" Importance="high" />-->
+  </Target>
+
+</Project>

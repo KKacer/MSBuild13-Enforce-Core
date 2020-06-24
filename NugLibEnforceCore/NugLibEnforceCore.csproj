@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <!-- .Pack -->
+  <ItemGroup>
+
+    <None Include="pack\**;pack\**;pack\*.*;pack\Dox\*.*" />
+    <Content Include="build\*.targets" />
+    <!-- New additions -->
+    <None Update=".pack\**" Pack="true" IncludeInPackage="true" PackagePath="content\any\any\.pack;contentFiles\any\any\.pack;;">
+    </None>
+    <Content Update="build\*.targets" Pack="true" IncludeInPackage="true" PackagePath="content\any\any\build;contentFiles\any\any\build;;">    
+    </Content>
+    <!-- Not sure if I need this -->
+  </ItemGroup>
+
+  <!-- Build -->
+  <ItemGroup>
+    <Content Include="build\*.targets" PackagePath="build\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove=".pack\Logs\**" />
+    <Compile Remove=".pack\Shorx\**" />
+    <Compile Remove="build\Archives\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Framework" Version="16.5.0" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.5.0" />
+  </ItemGroup>
+
+  <!-- Imports -->
+  <Import Project="build\build.targets" />
+  <Import Project=".pack\package.csproj" Condition="Exists('.pack\package.csproj')" />
+
+</Project>

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild> -->
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>ConsumerTest</AssemblyName>
+    <RootNamespace>ConsumerTest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="build\build.targets">
+      <!-- <PackagePath>content\any\any\build;contentFiles\any\any\build;;</PackagePath> -->
+      <IncludeInPackage>true</IncludeInPackage>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+
+  <Import Project="build\build.targets" />
+
+</Project>
